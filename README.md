@@ -1,4 +1,4 @@
-## Volumental Assignment
+## ThreeJS Assignment
 -------
 # Install NPM packages
 
