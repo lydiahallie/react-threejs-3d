@@ -1,5 +1,6 @@
 //Dependencies
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import * as THREE from 'three';
 import {
   App,
@@ -20,11 +21,13 @@ const camera = new PerspectiveCamera({
 });
 
 const app = new App([
+  //Add dependencies to App module
   new ElementModule(document.createElement('div')),
   new SceneModule(),
   new DefineModule('camera', camera),
   new RenderingModule({
-    width: 0, height: 0,
+    width: 0,
+    height: 0,
     pixelRatio: 1,
 
     renderer: {
@@ -42,6 +45,7 @@ new Importer({
   loader: new OBJLoader(),
   scale: [10, 10, 10],
 
+  //Return mesh
   parser(group) {
     group.children[0].material = material;
     group.children[1].material = material;
@@ -50,7 +54,7 @@ new Importer({
   }
 }).addTo(app);
 
-class Scene extends Component {
+class MeshDisplay extends Component {
   constructor(props) {
     super(props);
 
@@ -73,6 +77,7 @@ class Scene extends Component {
     //Set the size of the canvas
     this.renderer.setSize(width, height);
 
+    //Start rendering
     app.start();
   }
 
@@ -84,11 +89,14 @@ class Scene extends Component {
   render() {
     return (
       <div
-        style={{ width: '400px', height: '400px' }}
         ref={(mount) => { this.mount = mount }}
       />
     )
   }
 }
 
-export default Scene;
+MeshDisplay.propTypes = {
+  color: PropTypes.string.isRequired,
+}
+
+export default MeshDisplay;

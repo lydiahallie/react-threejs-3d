@@ -1,13 +1,9 @@
 //Dependencies
 import React, { Component } from 'react';
-import * as THREE from 'three';
 //Internals
 import UserMenu from '../UserMenu';
-import Scene from '../MeshDisplay';
-// import MeshDisplay from '../MeshDisplay';
+import MeshDisplay from '../MeshDisplay';
 import './styles.css';
-//Variables
-let counter = 0;
 
 class App extends Component {
   constructor() {
@@ -28,10 +24,10 @@ class App extends Component {
     return(
       <div className="app">
         <div className="app-mesh-display">
-          <Scene color={this.state.color} />
+          <MeshDisplay color={this.state.color} />
         </div>
         <div className="app-user-menu">
-          <UserMenu changeColor={this.changeColor} onAnimate={this.onAnimate}/>
+          <UserMenu changeColor={this.changeColor} />
         </div>
       </div>
     )
