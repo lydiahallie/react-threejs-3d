@@ -7,22 +7,23 @@ body {
 /**APP**/
 /*******/
 .app {
-  height: 100vh;
-  width: 100vw;
-  background: url('https://static.pexels.com/photos/1526/dark-blur-blurred-gradient.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  display: flex;
-  justify-content: space-between;
   align-items: center;
+  background: url('https://static.pexels.com/photos/1526/dark-blur-blurred-gradient.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  height: 100vh;
+  justify-content: space-between;
+  overflow: hidden;
+  width: 100vw;
 }
 
 .app-mesh-display {
-  width: 80vw;
-  display: flex;
-  justify-content: center;
   align-items: center;
+  display: flex;
   flex-direction: column;
+  justify-content: center;
+  width: 80vw;  
 }
 
 .app-user-menu {

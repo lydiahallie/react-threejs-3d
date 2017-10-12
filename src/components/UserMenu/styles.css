@@ -18,26 +18,3 @@
   font-size: 30px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.4);
 }
-
-/*********************/
-/****COLOR BUTTONS****/
-/*********************/
-.um-btn-wrapper {
-  height: 30vh;
-  width: 280px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.um-btn-wrapper h3 {
-  font-family: 'Alegreya Sans SC', sans-serif;
-  font-weight: 100;
-  color: white;
-  font-size: 20px;
-  width: 160px;
-}
-
-.circle-picker {
-  width: 260px;
-}

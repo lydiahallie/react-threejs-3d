@@ -14,6 +14,7 @@ import {
 } from 'whs';
 //Internals
 import OBJLoader from './lib/OBJLoader';
+import './styles.css';
 
 //Set the perspective camera
 const camera = new PerspectiveCamera({
@@ -88,9 +89,12 @@ class MeshDisplay extends Component {
 
   render() {
     return (
-      <div
-        ref={(mount) => { this.mount = mount }}
-      />
+      <div className="meshdisplay-wrapper">
+        <h1>Your 3D foot</h1>
+        <div
+          ref={(mount) => { this.mount = mount }}
+        />
+      </div>
     )
   }
 }

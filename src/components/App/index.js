@@ -24,10 +24,14 @@ class App extends Component {
     return(
       <div className="app">
         <div className="app-mesh-display">
-          <MeshDisplay color={this.state.color} />
+          <MeshDisplay
+            color={this.state.color}
+          />
         </div>
         <div className="app-user-menu">
-          <UserMenu changeColor={this.changeColor} />
+          <UserMenu
+            changeColor={this.changeColor}
+          />
         </div>
       </div>
     )
