@@ -9,7 +9,8 @@
     "react-scripts": "1.0.14",
     "react-three-renderer": "^3.2.1",
     "three": "^0.84.0",
-    "three-obj-loader": "^1.1.3"
+    "three-obj-loader": "^1.1.3",
+    "whs": "^2.1.8"
   },
   "scripts": {
     "start": "react-scripts start",

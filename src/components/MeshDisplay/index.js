@@ -1,65 +1,85 @@
 //Dependencies
 import React, { Component } from 'react';
-import React3 from 'react-three-renderer';
-import PropTypes from 'prop-types';
-import * as OBJLoader from 'three-obj-loader';
 import * as THREE from 'three';
+import {
+  App,
+  ElementModule,
+  SceneModule,
+  DefineModule,
+  RenderingModule,
+  PerspectiveCamera,
+  Importer,
+  OrbitControlsModule
+} from 'whs';
 //Internals
-import './styles.css';
-//Loaders
-OBJLoader(THREE);
+import OBJLoader from './lib/OBJLoader';
 
 class MeshDisplay extends Component {
-  constructor() {
-    super();
-    this.cameraPosition = new THREE.Vector3(0, 0, 5);
+  constructor(props) {
+    super(props);
+  }
+
+  componentDidMount() {
+    //Define the width and height
+    const width = window.innerWidth/2;
+    const height = window.innerHeight/2;
+
+    //Set the perspective camera
+    const camera = new PerspectiveCamera({
+      aspect: width / height,
+      position: [0, 0, 5]
+    });
+
+    //Create the app: Scene, Renderer, OrbitControl
+    const app = new App([
+      new ElementModule(this.mount),
+      new SceneModule(),
+      new DefineModule('camera', camera),
+      new RenderingModule({
+        width, height,
+        pixelRatio: 1,
+        renderer: {
+          antialias: true
+        },
+        bgColor: 0x393939,
+      }),
+      new OrbitControlsModule()
+    ]);
+
+    const material = new THREE.MeshBasicMaterial({color: this.props.color});
+
+    //Import the .obj file and add it to app
+    new Importer({
+      url: './right.obj',
+      loader: new OBJLoader(),
+      scale: [20, 10, 20],
+
+      parser(group) {
+        group.children[0].material = material;
+        group.children[1].material = material;
+
+        return group;
+      }
+    }).addTo(app);
+
+    this.app = app;
+    this.scene = app.get('scene');
+    this.camera = app.get('camera');
+    this.renderer = app.get('renderer');
+    this.domChild = app.get('element');
+    this.material = material;
+
+    app.start();
   }
 
   render() {
-    const width = window.innerWidth/2;
-    const height = window.innerHeight/2;
     return (
-      <div className="mesh-display">
-        {/* SET THE CAMERA */}
-        <React3
-        mainCamera="mesh-display"
-        alpha={true}
-        clearAlpha={0.3}
-        clearColor={0xffffff}
-        width={width}
-        height={height}
-        >
-          {/* SET CAMERA, CREATE SCENE & MESH */}
-          <scene className="scene">
-            <perspectiveCamera
-              name="mesh-display"
-              fov={75}
-              aspect={width / height}
-              near={0.1}
-              far={1000}
-              position={this.cameraPosition}
-            />
-            <mesh rotation={this.props.cubeRotation} >
-              <boxGeometry
-                width={1}
-                height={1}
-                depth={1}
-              />
-              <meshBasicMaterial
-                color={this.props.color}
-                wireframe={false}
-              />
-            </mesh>
-          </scene>
-        </React3>
-      </div>
-    );
+      <div
+        style={{ width: '400px', height: '400px' }}
+        ref={(mount) => { this.mount = mount }}
+      />
+    )
   }
-}
-
-MeshDisplay.propTypes = {
-  cubeRotation: PropTypes.func.isRequired,
-  color: PropTypes.string.isRequired,
 }
 
 export default MeshDisplay;
