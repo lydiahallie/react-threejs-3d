@@ -10,12 +10,10 @@ class UserMenu extends Component {
   render() {
     return(
       <div className="um-wrapper">
-        <h1>Controls</h1>
         <ColorButtons
           changeColor={this.props.changeColor}
           className={this.props.className}
         />
-        <h1>Need Help?</h1>
         <UserGuide />
       </div>
     )

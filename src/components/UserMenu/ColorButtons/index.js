@@ -9,7 +9,8 @@ class ColorButtons extends Component {
   render() {
     return(
       <div className="color-buttons-wrapper">
-        <h3 className={`circle-picker-${this.props.className}`}>Choose your color:</h3>
+        <h1>Controls</h1>
+        <h3>Choose your color:</h3>
         <CirclePicker onChange={this.props.changeColor}  />
       </div>
     )

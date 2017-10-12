@@ -23,9 +23,30 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 80vw;  
+  width: 80vw;
 }
 
 .app-user-menu {
   width: 20vw;
+}
+
+/***************/
+/*MEDIA QUERIES*/
+/***************/
+@media screen and (max-width: 1200px) {
+  .app {
+    flex-direction: column;
+  }
+
+  .app-mesh-display {
+    height: 70vh;
+  }
+
+  .app-user-menu {
+    align-items: center;
+    display: flex;
+    height: 30vh;
+    justify-content: center;
+    width: 100vw;
+  }
 }

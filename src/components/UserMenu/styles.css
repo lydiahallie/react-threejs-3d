@@ -11,10 +11,14 @@
   align-items: center;
 }
 
-.um-wrapper h1 {
-  font-family: 'Alegreya Sans SC', sans-serif;
-  font-weight: 100;
-  color: white;
-  font-size: 30px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+/***************/
+/*MEDIA QUERIES*/
+/***************/
+@media screen and (max-width: 1200px) {
+  .um-wrapper {
+    flex-direction: row;
+    justify-content: space-between;
+    height: 20em;
+    width: 100vw !important;
+  }
 }
