@@ -14,53 +14,45 @@ import {
 //Internals
 import OBJLoader from './lib/OBJLoader';
 
-class MeshDisplay extends Component {
+//Set the perspective camera
+const camera = new PerspectiveCamera({
+  position: [0, 0, 10]
+});
+
+const app = new App([
+  new ElementModule(document.createElement('div')),
+  new SceneModule(),
+  new DefineModule('camera', camera),
+  new RenderingModule({
+    width: 0, height: 0,
+    pixelRatio: 1,
+
+    renderer: {
+      antialias: true
+    }
+  }),
+  new OrbitControlsModule()
+]);
+
+//Set the material for the mesh
+const material = new THREE.MeshBasicMaterial({color: 0xffffff});
+
+new Importer({
+  url: './left.obj',
+  loader: new OBJLoader(),
+  scale: [10, 10, 10],
+
+  parser(group) {
+    group.children[0].material = material;
+    group.children[1].material = material;
+
+    return group;
+  }
+}).addTo(app);
+
+class Scene extends Component {
   constructor(props) {
     super(props);
-  }
-
-  componentDidMount() {
-    //Define the width and height
-    const width = window.innerWidth/2;
-    const height = window.innerHeight/2;
-
-    //Set the perspective camera
-    const camera = new PerspectiveCamera({
-      aspect: width / height,
-      position: [0, 0, 5]
-    });
-
-    //Create the app: Scene, Renderer, OrbitControl
-    const app = new App([
-      new ElementModule(this.mount),
-      new SceneModule(),
-      new DefineModule('camera', camera),
-      new RenderingModule({
-        width, height,
-        pixelRatio: 1,
-        renderer: {
-          antialias: true
-        },
-        bgColor: 0x393939,
-      }),
-      new OrbitControlsModule()
-    ]);
-
-    const material = new THREE.MeshBasicMaterial({color: this.props.color});
-
-    //Import the .obj file and add it to app
-    new Importer({
-      url: './right.obj',
-      loader: new OBJLoader(),
-      scale: [20, 10, 20],
-
-      parser(group) {
-        group.children[0].material = material;
-        group.children[1].material = material;
-
-        return group;
-      }
-    }).addTo(app);
 
     this.app = app;
     this.scene = app.get('scene');
@@ -68,8 +60,25 @@ class MeshDisplay extends Component {
     this.renderer = app.get('renderer');
     this.domChild = app.get('element');
     this.material = material;
+  }
+
+  componentDidMount() {
+    //Define the width and height of the canvas
+    const width = window.innerWidth/2;
+    const height = window.innerHeight/2;
+
+    //Get the canvas on the screen
+    this.mount.appendChild(this.app.get('element'));
+
+    //Set the size of the canvas
+    this.renderer.setSize(width, height);
 
     app.start();
+  }
+
+  //Update color
+  componentWillReceiveProps(props) {
+    this.material.color.setHex(eval("0x" + props.color.replace('#', '')));
   }
 
   render() {
@@ -82,4 +91,4 @@ class MeshDisplay extends Component {
   }
 }
 
-export default MeshDisplay;
+export default Scene;

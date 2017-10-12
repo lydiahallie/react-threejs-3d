@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 import * as THREE from 'three';
 //Internals
 import UserMenu from '../UserMenu';
-import MeshDisplay from '../MeshDisplay';
+import Scene from '../MeshDisplay';
+// import MeshDisplay from '../MeshDisplay';
 import './styles.css';
 //Variables
 let counter = 0;
@@ -14,27 +15,27 @@ class App extends Component {
     this.state = {
       color: 0x00ff00,
     };
-  };
+  }
 
-  //Change color to value of button
+  //Set state to value of button
   changeColor = (color) => {
     this.setState({
       color: color.hex,
     });
-  };
+  }
 
   render() {
     return(
       <div className="app">
         <div className="app-mesh-display">
-          <MeshDisplay color={this.state.color} />
+          <Scene color={this.state.color} />
         </div>
         <div className="app-user-menu">
-          <UserMenu changeColor={this.changeColor} />
+          <UserMenu changeColor={this.changeColor} onAnimate={this.onAnimate}/>
         </div>
       </div>
-    );
-  };
+    )
+  }
 }
 
 export default App;
