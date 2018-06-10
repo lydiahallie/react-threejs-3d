@@ -3,9 +3,6 @@ body {
   padding: 0;
 }
 
-/********/
-/**APP**/
-/*******/
 .app {
   align-items: center;
   background: url('https://static.pexels.com/photos/1526/dark-blur-blurred-gradient.jpg');
@@ -30,9 +27,7 @@ body {
   width: 20vw;
 }
 
-/***************/
-/*MEDIA QUERIES*/
-/***************/
+
 @media screen and (max-width: 1200px) {
   .app {
     flex-direction: column;

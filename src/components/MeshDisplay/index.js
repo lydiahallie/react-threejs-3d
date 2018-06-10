@@ -16,13 +16,11 @@ import {
 import OBJLoader from './lib/OBJLoader';
 import './styles.css';
 
-//Set the perspective camera
 const camera = new PerspectiveCamera({
   position: [0, 0, 10]
 });
 
 const app = new App([
-  //Add dependencies to App module
   new ElementModule(document.createElement('div')),
   new SceneModule(),
   new DefineModule('camera', camera),
@@ -38,7 +36,6 @@ const app = new App([
   new OrbitControlsModule()
 ]);
 
-//Set the material for the mesh
 const material = new THREE.MeshBasicMaterial({color: 0xffffff});
 
 new Importer({
@@ -46,7 +43,6 @@ new Importer({
   loader: new OBJLoader(),
   scale: [10, 10, 10],
 
-  //Return mesh
   parser(group) {
     group.children[0].material = material;
     group.children[1].material = material;
@@ -68,21 +64,16 @@ class MeshDisplay extends Component {
   }
 
   componentDidMount() {
-    //Define the width and height of the canvas
     const width = window.innerWidth/2;
     const height = window.innerHeight/2;
 
-    //Get the canvas on the screen
     this.mount.appendChild(this.app.get('element'));
 
-    //Set the size of the canvas
     this.renderer.setSize(width, height);
 
-    //Start rendering
     app.start();
   }
 
-  //Update color
   componentWillReceiveProps(props) {
     this.material.color.setHex(eval("0x" + props.color.replace('#', '')));
   }
@@ -90,10 +81,8 @@ class MeshDisplay extends Component {
   render() {
     return (
       <div className="meshdisplay-wrapper">
-        <h1>Your 3D foot</h1>
-        <div
-          ref={(mount) => { this.mount = mount }}
-        />
+        <h1>A cool 3D air boat!</h1>
+        <div ref={(mount) => { this.mount = mount }} />
       </div>
     )
   }

@@ -6,19 +6,12 @@ import ColorButtons from './ColorButtons';
 import UserGuide from './UserGuide';
 import './styles.css';
 
-class UserMenu extends Component {
-  render() {
-    return(
-      <div className="um-wrapper">
-        <ColorButtons
-          changeColor={this.props.changeColor}
-          className={this.props.className}
-        />
-        <UserGuide />
-      </div>
-    )
-  }
-}
+const UserMenu = ({changeColor, className}) => (
+  <div className="um-wrapper">
+    <ColorButtons changeColor={changeColor} className={className} />
+    <UserGuide />
+  </div>
+)
 
 UserMenu.propTypes = {
   changeColor: PropTypes.func.isRequired,

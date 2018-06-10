@@ -1,6 +1,3 @@
-/*********************/
-/****COLOR BUTTONS****/
-/*********************/
 .color-buttons-wrapper {
   align-items: center;
   display: flex;
@@ -30,9 +27,6 @@
   width: 20vw;
 }
 
-/***************/
-/*MEDIA QUERIES*/
-/***************/
 @media screen and (max-width: 1200px) {
   .color-buttons-wrapper {
     height: 100%;

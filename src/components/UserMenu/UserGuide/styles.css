@@ -1,6 +1,3 @@
-/********************/
-/*USER GUIDE WRAPPER*/
-/********************/
 .user-guide-wrapper {
   align-items: center;
   display: flex;
@@ -18,9 +15,6 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.4);
 }
 
-/*******************/
-/*USER GUIDE TITLES*/
-/*******************/
 .user-guide-wrapper h5{
   text-align: center;
   background-color: rgba(0, 0, 0, 0.4);
@@ -38,15 +32,12 @@
   transition: 0.5s;
 }
 
-/*****************/
-/*USER GUIDE TEXT*/
-/*****************/
-.ug-text-1-inactive p, .ug-text-2-inactive p {
+.ug-text-1.expanded-false p, .ug-text-2.expanded-false p {
   height: 0;
   opacity: 0;
 }
 
-.ug-text-1-active p, .ug-text-2-active p {
+.ug-text-1.expanded-true p, .ug-text-2.expanded-true p {
   -webkit-animation: fade-in 1s forwards;
   -webkit-animation-delay: 1s;
   animation: fade-in 1s forwards;
@@ -58,9 +49,6 @@
   overflow: hidden;
 }
 
-/***********/
-/*KEYFRAMES*/
-/***********/
 @-webkit-keyframes fade-in {
   100% {
     opacity: 1;
@@ -73,9 +61,6 @@
    }
 }
 
-/***************/
-/*MEDIA QUERIES*/
-/***************/
 @media screen and (max-width: 1200px) {
   .user-guide-wrapper {
     align-items: center;
@@ -94,7 +79,7 @@
     margin: 10px;
   }
 
-  .ug-text-1-inactive, .ug-text-2-inactive, .ug-text-1-active, .ug-text-2-active {
+  .ug-text-1, .ug-text-2 {
     display: flex;
     flex-direction: column;
     height: 20em;
